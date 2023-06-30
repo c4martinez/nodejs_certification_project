@@ -7,7 +7,6 @@ export default class extends Bootstrap {
 	constructor(private readonly app: Application) {
 		super()
 	}
-
 	// pricipio SOLID: liskov sustitution
 	// principio SOLID: Single Responsability
 	initialize() {
