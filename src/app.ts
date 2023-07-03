@@ -5,7 +5,7 @@ import express, { Application } from 'express'
 // import compression from 'compression'
 import routerHealth from './helpers/health'
 import HandlerErrors from './helpers/errors'
-// import routerUser from './modules/user/interfaces/http/user.routes'
+import routerUser from './modules/user/interfaces/http/user.routes'
 
 class App {
 	readonly expressApp: Application
@@ -43,7 +43,7 @@ class App {
 	}
 
 	mountRoutes(): void {
-		// this.expressApp.use('/user', routerUser)
+		this.expressApp.use('/user', routerUser)
 	}
 
 	mountError(): void {

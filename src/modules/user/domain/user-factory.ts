@@ -33,7 +33,7 @@ export default class UserFactory {
 		if(password.length < 5) {
 			return err(new UserPasswordLengthInvalidException(password))
 		}
-
+		// desing pattern: factory method
 		const passwordHash = await UserPasswordService.hash(password)
 
 		const userProperties: UserProperties = {
