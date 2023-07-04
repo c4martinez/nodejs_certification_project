@@ -1,12 +1,12 @@
 import User from '../domain/user'
+import { UserUpdate } from '../domain/interfaces/userUpdate.interface'
 import { UserRepository } from '../domain/user.repository'
+import { EmailVO } from '../domain/value-objects/email.vo'
 import { UserEntity } from './user.entity'
 import DatabaseBootstrap from '../../../bootstrap/database.bootstrap'
-import { EmailVO } from '../domain/value-objects/email.vo'
 import { UserEmailInvalidException } from '../domain/exceptions/UserEmailInvalidException'
 import { UserNotFoundException } from '../domain/exceptions/UserNotFoundException'
 import { err, Result, ok } from 'neverthrow'
-import { UserUpdate } from '../domain/interfaces/userUpdate.interface'
 
 export default class UserInfraestructure implements UserRepository {
 	async insert(user: User): Promise<User> {
@@ -49,7 +49,7 @@ export default class UserInfraestructure implements UserRepository {
 		})
 	}
 
-	async listOne(guid: string): Promise<Result<User, UserNotFoundException>> {
+	async listOne(guid: string): Promise<Result<User, UserNotFoundException | UserEmailInvalidException>> {
 		const repo = DatabaseBootstrap.dataSource.getRepository(UserEntity)
 		const result = await repo.findOne({ where: { guid } })
 		const emailResult = EmailVO.create(result.email)
@@ -103,7 +103,7 @@ export default class UserInfraestructure implements UserRepository {
 		}
 	}
 	
-    async delete(guid: string): Promise<Result<User, UserNotFoundException>> {
+    async delete(guid: string): Promise<Result<User, UserNotFoundException | UserEmailInvalidException>> {
         const repo = DatabaseBootstrap.dataSource.getRepository(UserEntity)
     
         const userFound = await repo.findOne({

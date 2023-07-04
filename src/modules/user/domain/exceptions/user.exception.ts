@@ -1,5 +1,5 @@
 // import { DomainException } from './domain.exception'
-// import { DomainExceptionCode } from '../enums/domainException.enum'
+// import { DomainExceptionCode } from '../emuns/domainException.enum'
 
 // export class UserNameRequiredException extends DomainException {
 // 	constructor() {
