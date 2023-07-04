@@ -3,7 +3,7 @@ import UserApplication from '../../application/user.application'
 import { UserRepository } from '../../domain/user.repository'
 import UserInfraestructure from '../../infraestructure/user.infraestructure'
 import UserController from './user.controller'
-// import { MiddlewareListOne } from './middlewares/user.middleware'
+import { MiddlewareListOne } from './middlewares/user.middleware'
 
 const infraestructure: UserRepository = new UserInfraestructure()
 const application = new UserApplication(infraestructure)
@@ -21,7 +21,7 @@ class UserRouter {
 		// Design Pattern Chain Of Responsability
 		this.expressRouter.post('/insert', controller.insert)
 		this.expressRouter.get('/list', controller.list)
-		this.expressRouter.get('/listOne/:guid', controller.listOne)
+		this.expressRouter.get('/listOne/:guid', ...MiddlewareListOne, controller.listOne)
 		this.expressRouter.put('/update/:guid', controller.update)
 		this.expressRouter.delete('/delete/:guid', controller.delete)
 	}
