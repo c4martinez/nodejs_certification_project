@@ -1,8 +1,8 @@
 import express, { Application } from 'express'
-// import hpp from 'hpp'
-// import helmet from 'helmet'
-// import cors from 'cors'
-// import compression from 'compression'
+import hpp from 'hpp'
+import helmet from 'helmet'
+import cors from 'cors'
+import compression from 'compression'
 import routerHealth from './helpers/health'
 import HandlerErrors from './helpers/errors'
 import routerUser from './modules/user/interfaces/http/user.routes'
@@ -12,24 +12,24 @@ class App {
 
 	constructor() {
 		this.expressApp = express()
-		// this.owaspSecurityMiddlewares()
+		this.owaspSecurityMiddlewares()
 		this.mountHealthCheck()
 		this.mountMiddlewares()
 		this.mountRoutes()
 		this.mountError()
 	}
 
-	// owaspSecurityMiddlewares() {
-	// 	this.expressApp.use(hpp())
-	// 	this.expressApp.use(helmet())
-	// 	this.expressApp.use(
-	// 		cors({
-	// 			origin: '*',
-	// 			optionsSuccessStatus: 200,
-	// 			methods: ['GET', 'POST', 'PUT', 'DELETE'],
-	// 		}),
-	// 	)
-	// }
+	owaspSecurityMiddlewares() {
+		this.expressApp.use(hpp())
+		this.expressApp.use(helmet())
+		this.expressApp.use(
+			cors({
+				origin: '*',
+				optionsSuccessStatus: 200,
+				methods: ['GET', 'POST', 'PUT', 'DELETE'],
+			}),
+		)
+	}
 
 	//principio SOLID:  Open/Close
 	mountHealthCheck() {
@@ -37,7 +37,7 @@ class App {
 	}
 
 	mountMiddlewares() {
-		// this.expressApp.use(compression())
+		this.expressApp.use(compression())
 		this.expressApp.use(express.json())
 		this.expressApp.use(express.urlencoded({ extended: true }))
 	}
@@ -48,7 +48,7 @@ class App {
 
 	mountError(): void {
 		this.expressApp.use(HandlerErrors.notFound)
-		// this.expressApp.use(HandlerErrors.genericError)
+		this.expressApp.use(HandlerErrors.genericError)
 	}
 }
 
