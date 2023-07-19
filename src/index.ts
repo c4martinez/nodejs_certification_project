@@ -8,7 +8,7 @@ const databaseBootstrap: Bootstrap = new DatabaseBootstrap()
 
 ;(async () => {
 	try {
-		await databaseBootstrap.initialize(), console.log('Base de datos iniciada exitosamente')
+		await databaseBootstrap.initialize(),  console.log('Base de datos iniciada exitosamente')
 		await serverBootstrap.initialize()
 	} catch (error) {
 		console.log(error)
