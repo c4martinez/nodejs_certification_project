@@ -14,7 +14,7 @@ export class AppService {
 			username: process.env.DB_USER || 'user',
 			password: process.env.DB_PASS || '0411',
 			database: process.env.DB_NAME || 'proyectonode',
-			synchronize: process.env.DB_SYNC === 'true' ? true : false,
+			synchronize: true,
 			logging: process.env.DB_LOGG === 'true' ? true : false,
 		}
 	}
