@@ -9,8 +9,7 @@ export class AppService {
 		return {
 			host: process.env.DB_HOST || 'localhost',
 			port: +process.env.DB_PORT || 3310,
-			entities: [process.env.DB_ENTITIES || 'src/**/*.entity.ts'],
-			// entities: [process.env.DB_ENTITIES || 'dist/**/*.entity.js'],
+			entities: [process.env.DB_ENTITIES || 'dist/**/*.entity.js'],
 			username: process.env.DB_USER || 'user',
 			password: process.env.DB_PASS || '0411',
 			database: process.env.DB_NAME || 'proyectonode',
